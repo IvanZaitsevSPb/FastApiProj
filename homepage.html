@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Data</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 600px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <form action="/search_by_column" method="get">
+        <input type="text" name="search_value" placeholder="Enter search value">
+        <label for="column">Select a column:</label>
+        <select id="column" name="column">
+            <option value="plane">Plane</option>
+            <option value="town_from">Town From</option>
+            <option value="town_to">Town To</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    {% if results %}
+    <table>
+        <tr>
+            <!-- Заголовки столбцов -->
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+            <th>Column 5</th>
+            <th>Column 6</th>
+            <!-- ... -->
+        </tr>
+        {% for row in results %}
+        <tr>
+            <!-- Данные из базы данных -->
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <!-- ... -->
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
